@@ -1,29 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { getLoginUrl, generateState } from "@/lib/auth";
-import { cookies } from "next/headers";
+import { LoginButton } from "@/components/login-button";
 import { BookOpen, Zap, Code2 } from "lucide-react";
 
-export default async function Home() {
-  const state = generateState();
-  const cookieStore = await cookies();
-  cookieStore.set("oauth_state", state, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
-    maxAge: 600,
-    path: "/",
-  });
-  const loginUrl = getLoginUrl(state);
-
+export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       <header className="border-b border-border bg-background">
         <nav className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
           <h1 className="text-2xl font-bold font-heading">DocsBeaver</h1>
-          <a href={loginUrl} className="inline-flex">
-            <Button variant="default">Sign in with GitHub</Button>
-          </a>
+          <LoginButton />
         </nav>
       </header>
 
@@ -35,9 +21,7 @@ export default async function Home() {
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             Create beautiful documentation sites with Fumadocs. Edit in Notion-like blocks or raw MDX. Deploy free to Vercel.
           </p>
-          <a href={loginUrl}>
-            <Button size="lg">Get Started</Button>
-          </a>
+          <LoginButton />
         </section>
 
         <section className="grid md:grid-cols-3 gap-6">
