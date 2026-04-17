@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bun dev)",
+      "Bash(bun run *)",
+      "Bash(bunx vitest run *)",
+      "Bash(bunx shadcn@latest add *)",
+      "Bash(git status)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
+    ]
+  }
+}
